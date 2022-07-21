@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+DB_DIR = '/database'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,7 +26,9 @@ SECRET_KEY = 'django-insecure-2)c!ktbv_d%v(ib#0ip2=e_6=ia@b$@vjgaj*9h7l_em4o7u3g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'data-admin',
+]
 
 
 # Application definition
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whatson',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +80,17 @@ WSGI_APPLICATION = 'data.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(DB_DIR, 'derbyartsandtheatre.db'),
+    },
+    'core_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(DB_DIR, 'core.db'),
     }
 }
 
+DATABASE_ROUTERS = [
+    'whatson.routers.DatabaseForCore',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -103,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 
