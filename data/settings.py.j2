@@ -27,6 +27,7 @@ SECRET_KEY = '{{ data_admin_secret_key }}'
 DEBUG = True
 
 ALLOWED_HOSTS = [ {{ data_admin_allowed_hosts | join(', ') }} ]
+CSRF_TRUSTED_ORIGINS = [ {{ data_admin_csrf_trusted_origins | join(', ') }} ]
 
 
 # Application definition
