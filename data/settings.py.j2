@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'data.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/var/www/{{ server_name }}/database/derbyartsandtheatre.db',
+        'NAME': '/var/www/{{ app_hostname }}/database/derbyartsandtheatre.db',
     },
     'core_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/var/www/{{ admin_server_name }}/database/core.db',
+        'NAME': '/var/www/{{ admin_app_hostname }}/database/core.db',
     }
 }
 
